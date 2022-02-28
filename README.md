@@ -7,7 +7,7 @@ Note: Stats are per 36 minutes, *not* per game.  This ensures that the players' 
 
 CSV Datasets obtained from Basketball-Reference.com
 
-![Demo](/Screenshots/Demo.gif?raw=true)
+
 
 ---
 
@@ -26,7 +26,7 @@ This was done for every combination.  Last thing to do was to round all columns 
     
 This was done for every column.  My original dataframe consisted of 7089 rows and 29 columns; after filtering players and dropping irrelevant columns, I was left with a dataframe of 4051 rows and 21 columns.  This meant 4051 rows of player statistics for my model to work with, along with 20 features for the model to test (20 features, 1 target column).  Here is a sample of the dataframe, showing only 5 rows, but all columns:
 
-![OriginalDF](/Screenshots/OriginalDF.png?raw=true)
+
 
 To confirm that target classes were evenly distributed and no re-balancing would need to take place, I checked the amount of unique values for each position:
 
@@ -55,7 +55,7 @@ We can glean useful information from the above chart.  We see that in terms of, 
     bar_chart_df = summary_df[['PTS', 'TRB', 'AST', 'STL', 'BLK']]
     bar_chart_df.plot(kind='bar', figsize = (12, 8), title='Bar Chart of Main Stats across all 5 Positions')
 
-![BarChart](/Screenshots/BarChart.png?raw=true)
+
 
 This simple bar chart shows the five main basketball statistics - Points, Rebounds, Assists, Steals and Blocks - and how they are distributed among the five positions.  As mentioned above, points/36 minutes do not differ that greatly position-by-position; rebounds and assists, however, vary greatly.  We can also see in yellow that centers average signficantly more blocks than other positions - blocks in general are hard to come by, so while centers average only 1.6 blocks/36 minutes, point guards average only .26 blocks/36 minutes, meaning in this particular dataset, centers average 144% more blocks/36 minutes than do point guards.  This feature could potentially be deemed one of the more important ones by the upcoming models.
 
@@ -68,7 +68,6 @@ This simple bar chart shows the five main basketball statistics - Points, Reboun
     sns_plot = sns.pairplot(sns_df, hue='Pos', size=2)
     sns_plot
     
-![SeabornChart](/Screenshots/SeabornChart.png?raw=true)
 
 Here we see scatter plots of all possible x/y-axis combinations.  The first thing I notice is the general positive correlation in these graphs - meaning, as the x-axis values increase, so do the y-values.  This makes sense to me, as it tells me that the better a player is at one particular category, chances are, they are also good at other statistical categories (good players don't just do one thing well).  However, with TRB and AST, it appears the opposite is true: generally speaking, the more assists a player has, or the more rebounds,  the less of the other stat they will have.
 
